@@ -48,10 +48,16 @@ To edit the RFC use your favorite text editor. See man 7 groff for formatting op
 
 To make a nice pdf with the nroff do the following:
 
-For Mac OSX users do the following to make a nice pdf with the nroff
+**For Mac OSX users do the following to make a nice pdf with the nroff:**
 
 
 groff rfc.nroff | pstopdf -i -o rfc.pdf
 
 
 open rfc.pdf
+
+**For Linux users do the following to make a nice pdf with the nroff**
+
+pdfroff rfc.nroff > rfc.pdf
+
+evince rfc.pdf
