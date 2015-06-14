@@ -1,0 +1,750 @@
+%PDF-1.3
+%‚„œ”
+2 0 obj
+<<
+/Length 2602
+>>
+stream
+BT
+/TT2 1 Tf
+12 0 0 12 0 768 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(CS494 )Tj
+35.3241 0 TD
+[(W)40(illiam Harrington)]TJ
+-35.3241 -1 TD
+[(Request for Comments)-23907(Portland State Uni)25(v)15(ersity)]TJ
+39.117 -1 TD
+(May 2015)Tj
+-29.086 -3 TD
+(CS494 Programming Project: Internet Relay Chat \(IRC\) Protocol)Tj
+-9.031 -2 TD
+(Status of this Memo)Tj
+2 -2 TD
+(This memo de)Tj
+/TT3 1 Tf
+5.7212 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+(nes an Experimental Protocol for the Internet community; it is not an Internet)Tj
+-6.2773 -1 TD
+[(standard of an)15(y)-250(kind. This document has been published for e)15(xamination, e)15(xperimental)]TJ
+T*
+[(implementation, and e)25(v)25(aluation. Discusssion and suggestions for impro)15(v)15(ement are requested.)]TJ
+T*
+[(Distrib)20(ution of this memo is unlimited.)]TJ
+-2 -4 TD
+(Abstract)Tj
+2 -2 TD
+[(The purpose of this Request for Comments \(RFC\) is to outline an e)15(xperimental protocol for a)]TJ
+0 -1 TD
+[(programming project that will be used for de)25(v)15(eloping an Internet Relay Chat \(IRC\) Serv)15(er and)]TJ
+T*
+[(Client application. The intended result is to mimic some v)15(ery basic IRC functionality with the)]TJ
+T*
+(protocol.)Tj
+0 -2 TD
+(The protocol de)Tj
+/TT3 1 Tf
+6.3311 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+[(nes the responsibilities of the serv)15(er and the client as well as ho)25(w)-250(the)15(y)-250(will)]TJ
+-6.8872 -1 TD
+[(communicate. The protocol is hea)20(vily weighted to)25(w)10(ards the serv)15(er)55(.)-250(The serv)15(er must k)10(eep track of all)]TJ
+T*
+(the users and all the channels as well as what users are in what channels. It must also manage)Tj
+T*
+[(incoming connections and messages and reply in a timely manner)55(.)-250(The serv)15(er is also required to)]TJ
+T*
+[(gi)25(v)15(e)15( )-15(information about the clients it is managing to an)15(y)-250(client that asks b)20(ut it is required to do so in)]TJ
+T*
+[(a)-250(manner that will not pose an)15(y)-250(security risks. The client is only required to issue v)25(alid commands)]TJ
+T*
+[(when interacting with the serv)15(er)55(.)]TJ
+-2 -3 TD
+[(T)80(able of Contents)]TJ
+0.25 -1 TD
+[(1)-250(Introduction)]TJ
+0.25 -1 TD
+[(1.1 Serv)15(ers)]TJ
+0.25 -1 TD
+0.25 Tw
+(1.2 Clients)Tj
+0.25 -1 TD
+0 Tw
+(1.2.1 Accounts)Tj
+-0.25 -1 TD
+0.25 Tw
+(1.3 Channels)Tj
+-0.5 -1 TD
+0 Tw
+(2. Messages)Tj
+0.25 -1 TD
+0.25 Tw
+[(2.1 Message)-250(Details)]TJ
+0.25 -1 TD
+[(2.1.1 Help)-250(message)]TJ
+T*
+[(2.1.2 Nickname)-250(message)]TJ
+T*
+[(2.1.3 Join)-250(message)]TJ
+T*
+[(2.1.4 P)15(art )250(message)]TJ
+T*
+(2.1.5 Quit)Tj
+-0.5 -1 TD
+0 Tw
+(3. User based queries)Tj
+0.25 -1 TD
+(3.1 Who query)Tj
+T*
+(3.2 Whois query)Tj
+ET
+endstream
+endobj
+3 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT3 5 0 R
+>>
+/ExtGState <<
+/GS1 6 0 R
+>>
+>>
+endobj
+9 0 obj
+<<
+/Length 4341
+>>
+stream
+BT
+/TT2 1 Tf
+12 0 0 12 12 780 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+[(1)-500(Introduction)]TJ
+2 -2 TD
+[(This Request for Comments \(RFC\) pro)15(vides an outline for the protocol that will be used to de)25(v)15(elop)]TJ
+0 -1 TD
+[(an Internet Relay Chat \(IRC\) Serv)15(er and Client program.)-500(This document co)15(v)15(ers the responsibilities)]TJ
+T*
+[(of the serv)15(er)40(,)-250(the client, and ho)25(w)-250(their interaction must tak)10(e)-250(place in order to properly implement an)]TJ
+T*
+(IRC application.)Tj
+0 -2 TD
+[(The k)10(e)15(y)15( )-15(w)10(ords "MUST", "MUST NO)40(T", "REQ)10(UIRED", "SHALL", "SHALL NO)40(T", "SHOULD",)]TJ
+0 -1 TD
+[("SHOULD NO)40(T", "RECOMMENDED", "MA)105(Y", and "OPTION)35(AL" in this document are to be)]TJ
+T*
+(interpreted as described in RFC 2119 [RFC2119].)Tj
+-2 -2 TD
+0.25 Tw
+[(1.1 Serv)15(ers)]TJ
+2 -2 TD
+0 Tw
+[(A)-250(serv)15(er must comply with the client-serv)15(er model. Connections between the serv)15(er and the client)]TJ
+0 -1 TD
+[(must be established via the TCP protocol, using a sock)10(et application programming interf)10(ace \(API\).)]TJ
+T*
+[(Furthermore, the serv)15(er shall be responsible for managing multiple connections at an)15(y)-250(one time.)]TJ
+T*
+[(This means that multiple clients should be able to connect to the serv)15(er)55(.)-250(The serv)15(er should ha)20(v)15(e)15( )-15(a)]TJ
+T*
+(minimum backlog of )Tj
+/TT3 1 Tf
+8.6377 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+[(v)15(e)-250(to)-250(account for possible congestion.)]TJ
+-9.1938 -2 TD
+[(When the serv)15(er be)15(gins operation, it must start storing speci)]TJ
+/TT3 1 Tf
+23.9641 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+(c information about clients that)Tj
+-24.5203 -1 TD
+[(connect such as a username. The serv)15(er shall also ha)20(v)15(e)15( )-15(the responsibility of operating on this stored)]TJ
+T*
+[(information, b)20(ut shall only do so when requested by the client. All the information stored on the)]TJ
+T*
+[(serv)15(er will be used to identify a client and their acti)25(vities. More about client information stored in)]TJ
+T*
+[(the serv)15(er is discussed in sections 1.2 and 1.2.1.)]TJ
+0 -2 TD
+[(The serv)15(er shall also be responsible for k)10(eeping a list of users \(clients\) and channels. It may also)]TJ
+0 -1 TD
+[(k)10(eep a list of sock)10(et objects.)]TJ
+-2 -2 TD
+0.25 Tw
+(1.2 Clients)Tj
+2 -2 TD
+0 Tw
+[(A)-250(client is an)15(ything connecting to a serv)15(er that is not another serv)15(er)55(.)-250(When a client establishes a)]TJ
+0 -1 TD
+[(connection with the serv)15(er)40(,)-250(the client must pro)15(vide information to the serv)15(er that can be used to)]TJ
+T*
+(identify it. Each client must be distinguished from other clients by a unique username. The)Tj
+T*
+[(maximum length for a username should be \(9\) characters. At a minimum the client should pro)15(vide a)]TJ
+T*
+[(username. If the client does not supply a username, then the serv)15(er must assign them one.)]TJ
+0 -2 TD
+-0.0001 Tc
+0.0001 Tw
+[(Information collected about each client should be or)17.9(ganized by sock)9.9(et, b)19.9(ut it may be or)17.9(ganized)]TJ
+0 -1 TD
+0 Tc
+0 Tw
+[(dif)25(ferently as long as the serv)15(er is able to create unique accounts for each client. Additional)]TJ
+T*
+(information is optional as speci)Tj
+/TT3 1 Tf
+12.5532 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+(ed in section 1.2.1.)Tj
+-15.1094 -2 TD
+(1.2.1 Accounts)Tj
+2 -2 TD
+[(The information that the serv)15(er holds about a particular client is referred to as an account. An)]TJ
+0 -1 TD
+[(account should be associated with a clientí)55(s)-250(sock)10(et. )-250(An)-250(account is made up of the follo)25(wing pieces)]TJ
+T*
+(of information: username, ip, channels, current.)Tj
+0 -2 TD
+(The username is a name associated with the user of a particular client. This is a required piece of)Tj
+0 -1 TD
+[(information which means the client must pro)15(vide it or the serv)15(er must assign it. It must be unique)]TJ
+T*
+(which means no one else should be currently using it as their username.)Tj
+0 -2 TD
+(The channels are simply the channel\(s\) that a user is a part of and current being the channel that a)Tj
+0 -1 TD
+(user currently has selected.)Tj
+0 -2 TD
+(Account information can be modi)Tj
+/TT3 1 Tf
+13.4961 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+[(ed through client to serv)15(er communication kno)25(wn as messages)]TJ
+-14.0522 -1 TD
+[(which is e)15(xplained in section 2.)]TJ
+ET
+endstream
+endobj
+10 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT3 5 0 R
+>>
+/ExtGState <<
+/GS1 6 0 R
+>>
+>>
+endobj
+12 0 obj
+<<
+/Length 3588
+>>
+stream
+BT
+/TT2 1 Tf
+12 0 0 12 12 780 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(1.3 Channels)Tj
+2 -2 TD
+[(A)-250(channel is a named group of one or more clients which all all recei)25(v)15(e)15( )-15(messages addressed to that)]TJ
+0 -1 TD
+(channel. The channel is created implicitly when the )Tj
+/TT3 1 Tf
+20.853 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+(rst client joins it, and the channel ceases to)Tj
+-21.4092 -1 TD
+[(e)15(xist when the last client lea)20(v)15(e)0(s)-250(it. While a channel e)15(xists, an)15(y)-250(client can reference the channel using)]TJ
+T*
+(the name of the channel.)Tj
+0 -2 TD
+[(Channel names are strings of length up to 50 characters, and must be)15(gin with a í&í or í#í. The)15(y)]TJ
+0 -1 TD
+[(must not contain an)15(y)-250(spaces, a control G, or a comma.)]TJ
+0 -2 TD
+[(T)80(o)80( )-80(create a ne)25(w)-250(channel or become part of an e)15(xisting channel, a user is required to join the channel.)]TJ
+0 -1 TD
+[(If the channel doesní)18(t)-250(e)15(xist prior to joining, the channel is created. Otherwise, the user is added to)]TJ
+T*
+(that channel. A user may be a part of up to 10 channels at once.)Tj
+-2 -3 TD
+[(2)-250(Messages)]TJ
+2 -2 TD
+[(Serv)15(ers and clients send each other messages which may or may not generate a reply)65(.)-250(I)0(f)-250(the message)]TJ
+0 -1 TD
+[(contains a v)25(alid command, as described in later sections, the client should e)15(xpect a reply as)]TJ
+T*
+(speci)Tj
+/TT3 1 Tf
+2.0547 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+[(ed b)20(ut it is not advised to w)10(ait fore)25(v)15(e)0(r)-250(for the reply; client to serv)15(er communication is)]TJ
+-2.6108 -1 TD
+(essentially asynchronous in nature.)Tj
+0 -2 TD
+[(Each IRC message may consist of up to tw)10(o)-250(parts: the command and the command parameters.)]TJ
+T*
+[(Messages are al)10(w)10(ays lines of characters terminated with a Carriage Return - Line Feed pair \(CR-)]TJ
+0 -1 TD
+[(LF\). The)15(y)-250(shall not e)15(xceed 512 characters in length, counting all characters including the trailing)]TJ
+T*
+[(CR-LF)80(.)-250(Thus, there are 510 characters maximum allo)25(wed for the command and its parameters.)]TJ
+-2 -2 TD
+(2.1 Message Details)Tj
+2 -2 TD
+[(The follo)25(wing sections are descriptions of each message recognized by the IRC serv)15(er)55(.)-250(All)]TJ
+0 -1 TD
+[(commands described in this section must be implemented by an)15(y)-250(serv)15(er for this protocol. The serv)15(er)]TJ
+T*
+[(to which a client is connected must parse the complete message, returning an)15(y)-250(appropriate errors. If)]TJ
+T*
+[(a)-250(full set of parameters is presented, then each must be check)10(ed for v)25(alidity and the appropriate)]TJ
+T*
+(response must be sent back to the client.)Tj
+-2 -3 TD
+(2.1.1 Help Message)Tj
+2 -2 TD
+(/help <command>)Tj
+T*
+[(The help message is used to pro)15(vide the client information on ho)25(w)-250(t)0(o)-250(properly send commands to)]TJ
+0 -1 TD
+[(the serv)15(er)55(.)-250(I)0(f)-250(a)-250(help message arri)25(v)15(e)0(s)-250(t)0(o)-250(a)-250(serv)15(er with out the <command> parameter)40(,)-250(i)0(t)-250(shall send the)]TJ
+T*
+[(user who sent the message a list of v)25(alid commands. If a help message arri)25(v)15(e)0(s)-250(t)0(o)-250(a)-250(serv)15(er with the)]TJ
+T*
+[(<command> parameter)40(,)-250(i)0(t)-250(shall send the user who sent the message more info on ho)25(w)-250(t)0(o)-250(properly)]TJ
+T*
+[(send that command to the serv)15(er)55(.)-250(I)0(f)-250(a)-250(help message arri)25(v)15(e)0(s)-250(t)0(o)-250(a)-250(serv)15(er with the <command>)]TJ
+T*
+[(parameter and the <command> parameter is in)40(v)25(alid, it shall send the user an error)55(.)]TJ
+ET
+endstream
+endobj
+13 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT3 5 0 R
+>>
+/ExtGState <<
+/GS1 6 0 R
+>>
+>>
+endobj
+15 0 obj
+<<
+/Length 4199
+>>
+stream
+BT
+/TT2 1 Tf
+12 0 0 12 12 780 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(2.1.2 Nickname Message)Tj
+2 -2 TD
+(/nick <username>)Tj
+T*
+[(The nickname message is used to specify a username or change it from what it pre)25(viously w)10(as.)]TJ
+T*
+[(If a nick message arri)25(v)15(e)0(s)-250(a)0(t)-250(a)-250(serv)15(er which already kno)25(ws about an identical username for another)]TJ
+0 -1 TD
+(client, it shall refuse the nick message by sending an error to the client. If the client has no)Tj
+T*
+[(username, the serv)15(er will request that another nick message be sent. If no nick message is sent)]TJ
+T*
+(within a speci)Tj
+/TT3 1 Tf
+5.5542 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+[(ed amount of time, the serv)15(er may assign one. Otherwise, the serv)15(er should close the)]TJ
+-6.1104 -1 TD
+(connection. If the client already has a username, then it shall remain unchanged.)Tj
+0 -2 TD
+[(If a nick message arri)25(v)15(e)0(s)-250(a)0(t)-250(a)-250(serv)15(er that doesní)18(t)-250(h)0(a)20(v)20( )245(e)-250(an identical username for another client, it)]TJ
+0 -1 TD
+[(shall change the clientí)55(s)-250(username to the <username> parameter)55(.)-250(I)0(f)-250(a)-250(nick message arri)25(v)15(e)0(s)-250(a)0(t)-250(a)]TJ
+T*
+[(serv)15(er without the <username> parameter)40(,)-250(the serv)15(er shall echo back the userí)55(s)-250(current username.)]TJ
+-2 -2 TD
+(2.1.2 Join Message)Tj
+2 -2 TD
+(/join <channel>)Tj
+T*
+[(The join message is used by a client to start listening to <channel> . If the channel does not e)15(xist, it)]TJ
+0 -1 TD
+[(is created by the serv)15(er and added to the list of channels. If the channel name is not v)25(alid, an error)]TJ
+T*
+(message is sent to the client and the channel is not joined nor created.)Tj
+0 -2 TD
+[(If a join is successful, it is added to the clientí)55(s)-250(list of channels on their account. The)15(y)-250(will be)15(gin to)]TJ
+0 -1 TD
+(see messages sent to the channel from other users when the channel is selected as their current)Tj
+T*
+[(channel. The)15(y)-250(will also be able to send messages to the channel when it is selected as their current)]TJ
+T*
+(channel.)Tj
+-2 -2 TD
+[(2.1.3 P)15(art Message)]TJ
+2 -2 TD
+0.015 Tw
+[(/lea)20(v)15(e)15( <channel>)]TJ
+T*
+0 Tw
+[(The part message is used by a client to lea)20(v)15(e)15( )-15(<channel>. If the channel name speci)]TJ
+/TT3 1 Tf
+32.9689 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+[(ed is not v)25(alid,)]TJ
+-33.5251 -1 TD
+(an error message is sent to the client and nothing else is done. If the user is not in the channel)Tj
+T*
+(speci)Tj
+/TT3 1 Tf
+2.0547 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+(ed, an error message is sent to the client and nothing else is done. If the user is in the channel)Tj
+-2.6108 -1 TD
+(speci)Tj
+/TT3 1 Tf
+2.0547 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+[(ed, that channel is remo)15(v)15(e)0(d)-250(from their list of channels. If the channel to lea)20(v)15(e)15( )-15(is)-250(a)-250(clientí)55(s)]TJ
+-2.6108 -1 TD
+[(current channel, their current channel is changed to an)15(y)-250(other channel in their list of channels or)]TJ
+T*
+(none if there is none.)Tj
+0 -2 TD
+[(If the user lea)20(v)15(e)0(s)-250(the channel and w)10(as the last person in the channel, it is remo)15(v)15(e)0(d)-250(from the list of)]TJ
+0 -1 TD
+[(channels track)10(ed by the serv)15(er)55(.)]TJ
+-2 -2 TD
+(2.1.4 Quit)Tj
+2 -2 TD
+[(/e)15(xit)]TJ
+T*
+[(The quit command is used by a client to lea)20(v)15(e)15( )-15(all channels and disconnect from the serv)15(er)55(.)-250(Upon a)]TJ
+0 -1 TD
+[(successful quit, each channel that a client w)10(as in is noti)]TJ
+/TT3 1 Tf
+22.0667 0 TD
+(ﬁ)Tj
+/TT2 1 Tf
+0.5562 0 TD
+[(ed that the)15(y)-250(h)0(a)20(v)20( )245(e)-250(left. All client information)]TJ
+-22.6228 -1 TD
+[(stored in the serv)15(er account is remo)15(v)15(e)0(d)-250(after the connection has been closed.)]TJ
+-2 -2 TD
+[(3)-250(User based query)]TJ
+2 -2 TD
+(User queries are commands which are concerned with supplying details to a user when requested.)Tj
+0 -1 TD
+[(The result of these commands when successful yield important information to the user)55(.)-250(None of the)]TJ
+T*
+[(information returned from these commands should be sensiti)25(v)15(e)15( )-15(in)-250(that it could be used to)]TJ
+T*
+[(compromise another user)55(.)]TJ
+ET
+endstream
+endobj
+16 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT3 5 0 R
+>>
+/ExtGState <<
+/GS1 6 0 R
+>>
+>>
+endobj
+18 0 obj
+<<
+/Length 1794
+>>
+stream
+BT
+/TT2 1 Tf
+12 0 0 12 12 780 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(3.1 Who query)Tj
+2 -2 TD
+(/who <channel>)Tj
+T*
+(The who message is used by a client to generate a query which returns a list of information which)Tj
+0 -1 TD
+[(matches the <channel> parameter gi)25(v)15(e)0(n)-250(b)0(y)-250(the client. In the absence of the <channel> parameter)40(,)-250(all)]TJ
+T*
+[(the clients currently connected to the serv)15(er are listed by their username. When the <channel>)]TJ
+T*
+[(parameter is present, all the clients currently connected to the serv)15(er that are in that channel are)]TJ
+T*
+[(listed. If the <channel> parameter is in)40(v)25(alid, an error message is sent to the client and nothing else is)]TJ
+T*
+[(done. If the channel does not e)15(xist, an error message is sent to the client and nothing else is done.)]TJ
+-2 -2 TD
+(3.2 Whois query)Tj
+2 -2 TD
+(/whois <username>)Tj
+T*
+(The whois message is used by a client to generate a query which returns information about the user)Tj
+0 -1 TD
+[(whose username matches the <username> parameter gi)25(v)15(e)0(n)-250(b)0(y)-250(the client. In the absence of the)]TJ
+T*
+[(<username> parameter)40(,)-250(a)0(n)-250(error message is sent to the client and nothing else is done. If there is no)]TJ
+T*
+[(user whose username matches the <username> parameter)40(,)-250(a)0(n)-250(error message is sent to the client and)]TJ
+T*
+[(nothing else is done. If there is a user whose username matches the <username> parameter)40(,)-250(then the)]TJ
+T*
+[(serv)15(er shall send information to the client who send the message about the user whose username)]TJ
+T*
+[(matches the <username> parameter)55(.)-250(This information should include a list of the userí)55(s)-250(current)]TJ
+T*
+[(channels, and may include other information lik)10(e)-250(I)0(P)-250(address.)]TJ
+ET
+endstream
+endobj
+19 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+>>
+/ExtGState <<
+/GS1 6 0 R
+>>
+>>
+endobj
+6 0 obj
+<<
+/Type /ExtGState
+/SA false
+/SM 0.02
+/OP false
+/op false
+/OPM 1
+/BG2 /Default
+/UCR2 /Default
+/HT /Default
+/TR2 /Default
+>>
+endobj
+20 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 750
+/CapHeight 662
+/Descent -250
+/Flags 34
+/FontBBox [-168 -218 1000 898]
+/FontName /Times-Roman
+/ItalicAngle 0
+/StemV 84
+/XHeight 450
+/StemH 84
+>>
+endobj
+21 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 750
+/CapHeight 662
+/Descent -250
+/Flags 34
+/FontBBox [-168 -218 1000 898]
+/FontName /Times-Roman
+/ItalicAngle 0
+/StemV 84
+/XHeight 450
+/StemH 84
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 32
+/LastChar 146
+/Widths [250 0 408 500 0 0 778 0 333 333 0 0 250 333 250 278 
+500 500 500 500 500 500 0 0 0 500 278 278 564 0 564 0 
+0 722 0 667 722 611 556 722 722 333 389 0 611 889 722 722 
+556 722 667 556 611 722 0 944 0 722 0 333 0 333 0 0 
+0 444 500 444 500 444 333 500 500 278 278 500 278 778 500 500 
+500 500 333 389 278 500 500 722 500 500 444 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 333 ]
+/Encoding /WinAnsiEncoding
+/BaseFont /Times-Roman
+/FontDescriptor 20 0 R
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 222
+/LastChar 222
+/Widths [556 ]
+/Encoding /MacRomanEncoding
+/BaseFont /Times-Roman
+/FontDescriptor 21 0 R
+>>
+endobj
+1 0 obj
+<<
+/Type /Page
+/Parent 7 0 R
+/Resources 3 0 R
+/Contents 2 0 R
+>>
+endobj
+8 0 obj
+<<
+/Type /Page
+/Parent 7 0 R
+/Resources 10 0 R
+/Contents 9 0 R
+>>
+endobj
+11 0 obj
+<<
+/Type /Page
+/Parent 7 0 R
+/Resources 13 0 R
+/Contents 12 0 R
+>>
+endobj
+14 0 obj
+<<
+/Type /Page
+/Parent 7 0 R
+/Resources 16 0 R
+/Contents 15 0 R
+>>
+endobj
+17 0 obj
+<<
+/Type /Page
+/Parent 7 0 R
+/Resources 19 0 R
+/Contents 18 0 R
+>>
+endobj
+22 0 obj
+<<
+/S /D
+>>
+endobj
+23 0 obj
+<<
+/Nums [0 22 0 R ]
+>>
+endobj
+7 0 obj
+<<
+/Type /Pages
+/Kids [1 0 R 8 0 R 11 0 R 14 0 R 17 0 R]
+/Count 5
+/MediaBox [0 0 612 792]
+>>
+endobj
+24 0 obj
+<<
+/CreationDate (D:20150613204024-07'00')
+/ModDate (D:20150613204024-07'00')
+/Producer (Apple pstopdf)
+>>
+endobj
+25 0 obj
+<<
+/Type /Catalog
+/Pages 7 0 R
+/PageLabels 23 0 R
+>>
+endobj
+xref
+0 26
+0000000000 65535 f 
+0000018573 00000 n 
+0000000016 00000 n 
+0000002670 00000 n 
+0000017860 00000 n 
+0000018403 00000 n 
+0000017326 00000 n 
+0000019051 00000 n 
+0000018653 00000 n 
+0000002776 00000 n 
+0000007169 00000 n 
+0000018734 00000 n 
+0000007276 00000 n 
+0000010917 00000 n 
+0000018817 00000 n 
+0000011024 00000 n 
+0000015276 00000 n 
+0000018900 00000 n 
+0000015383 00000 n 
+0000017230 00000 n 
+0000017466 00000 n 
+0000017663 00000 n 
+0000018983 00000 n 
+0000019011 00000 n 
+0000019159 00000 n 
+0000019282 00000 n 
+trailer
+<<
+/Size 26
+/Root 25 0 R
+/Info 24 0 R
+/ID [<8c80435ac2a71ca057a9bea9e90b03f6><8c80435ac2a71ca057a9bea9e90b03f6>]
+>>
+startxref
+19351
+%%EOF
