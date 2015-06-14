@@ -22,7 +22,9 @@ The client is designed to run with the server discussed in the following section
 python chat_client.py host port username
 
 host: IP address of server
+
 port: port number that the server is listening on
+
 username: desired username
 
 Please note that the host and port must be the corresponding IP address and port of the server you are trying to connect to.
