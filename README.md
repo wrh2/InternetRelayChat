@@ -47,10 +47,11 @@ When you say ChanServ to it, it will respond. Try asking it 'how are you ChanSer
 To edit the RFC use your favorite text editor. See man 7 groff for formatting options. There is an empty nroff template within the repository (empty.nroff).
 
 To make a nice pdf with the nroff do the following:
-   Mac OSX:
-       '''
-       groff rfc.nroff | pstopdf -i -o rfc.pdf
+
+For Mac OSX users do the following to make a nice pdf with the nroff
 
 
-       open rfc.pdf
-       '''
+groff rfc.nroff | pstopdf -i -o rfc.pdf
+
+
+open rfc.pdf
