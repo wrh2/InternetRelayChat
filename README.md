@@ -1,12 +1,18 @@
 ## IRC Client-Server
 
-Internet Relay Chat Client & Server programmed by William Harrington in Python for CS494 project. Requires python 2.7.9 or earlier. 
+Internet Relay Chat Client & Server programmed by William Harrington in Python for CS494 project. For proper execution, this code requires python 2.7.9 or earlier. 
 It may be compatible with newer versions of python but it hasn't been tested with them yet.
 If you run it with newer versions of python and it works/doesn't work please email me.
+
+
 Coding style adheres to PEP 0008 guidelines. I have used flake8 to ensure this.
+
+
 The client and server adhere to the protocol outlined in the RFC included with the code.
 The protocol outlined in the RFC is like wannabe IRC protocol so don't try to actually use the client to connect to real IRC servers or use real IRC clients to connect to the server.
 You can however modify this code to comply with IRC protocol pretty easily as all the beginnings are here for you.
+
+
 The last thing worth mentioning is that this code is not multithreaded. If you are interested in making this code better, I would suggest exploring that and I'd love to see the code if you do.
 
 ## Client
@@ -42,7 +48,9 @@ To edit the RFC use your favorite text editor. See man 7 groff for formatting op
 
 To make a nice pdf with the nroff do the following:
    Mac OSX:
+       '''
        groff rfc.nroff | pstopdf -i -o rfc.pdf
 
-       to open:
+
        open rfc.pdf
+       '''
