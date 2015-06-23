@@ -36,13 +36,6 @@ The server is designed to run with the client discussed in the previous section.
 **To run the server:**
 python chat_server.py
 
-## Test server
-
-I currently have a server running just for testing purposes. Connect to it with chat_client.py by doing the following: python chat_client.py 131.252.208.28 6667 username
-
-When you connect type /help for a list of commands.
-You will also find that there is also a channel with a "ChanServ" bot in it. 
-When you say ChanServ to it, it will respond. Try asking it 'how are you ChanServ'.
 
 ## RFC (Request For Comments)
 
